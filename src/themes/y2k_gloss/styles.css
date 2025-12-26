@@ -1,0 +1,609 @@
+/*
+DarkRetro2K
+Version: 0.94 (2024-03-19)
+Creator: midpark
+
+NOTE: Color configurations are in the body section of this css code.
+The height of the post preview image is set to 40vh.
+Use a CSS editor with color previews and pickers like VS code for easier color scheme editing.
+Turn off dark-mode extensions such as DarkReader when using this theme. 
+*/
+
+:root {
+    --emoji-font: "" !important;
+}
+
+body {
+    /* Colorful stuff */
+    --body-background-color: #061203 !important;
+    --notice-info-background: #163f0a !important;
+    --notice-info-border-color: #349619 !important;
+    --form-button-background: #091b04 !important;
+    --form-button-hover-background: #17440b !important;
+    --form-button-text-color: #baffa7 !important;
+    --form-button-border-color: #88ab7f !important;
+    --form-button-active-background: #7cb56c !important;
+    --post-artist-commentary-container-background: #173010 !important;
+    --post-artist-commentary-container-border-color: #88ab7f !important;
+    --post-search-notice-background: #173010 !important;
+    --post-notice-border-color: var(
+        --post-artist-commentary-container-border-color
+    ) !important;
+    --post-pending-notice-background: #1a4f0c !important;
+    --post-resized-notice-background: #15390c !important;
+    --link-color: #9eff84 !important;
+    --link-hover-color: #ebffe5 !important;
+    --post-tooltip-background-color: var(
+        --post-artist-commentary-container-background
+    ) !important;
+    --post-tooltip-header-background-color: var(
+        --post-tooltip-background-color
+    ) !important;
+    --post-tooltip-border-color: var(--notice-info-border-color) !important;
+    --box-shadow-color: #647e5c !important;
+    --subnav-menu-border-b: #468335 !important;
+    --subnav-menu-border-t: #2ed400 !important;
+    --subnav-menu-grad-b: #16300e !important;
+    --subnav-menu-grad-t: #135b00 !important;
+    --textbox-grad-b: #040b02 !important;
+    --textbox-grad-t: #132b0d !important;
+    --chip-primary-background-color: #0f2809 !important;
+    --default-border-color: #2f6220 !important;
+    --autosuggestions-box-background: #000000 !important;
+    --responsive-menu-background-color: #16300e !important;
+    --artist-tag-color: #ff7b7e !important;
+
+    --user-builder-color: #8870ff !important;
+    --user-contributor-color: #de9cff !important;
+    --user-approver-color: #ff31c7 !important;
+    --user-restricted-color: #cfe8ff !important;
+
+    /* Other stuff */
+    --text-color: white !important;
+    --form-input-text-color: var(--text-color) !important;
+    --header-color: #d1d1d1 !important;
+    --autocomplete-border-color: var(--notice-info-border-color) !important;
+    --textbox-background: black !important;
+    --button-hover-color: white !important;
+    --general-tag-color: #80c2ff !important;
+    --copyright-tag-color: #ebb9ff !important;
+}
+
+.ui-autocomplete.ui-widget {
+    background-color: var(--autosuggestions-box-background);
+}
+
+a {
+    transition: color 0.15s ease-in;
+}
+
+option:hover {
+    background-color: var(--default-border-color);
+}
+
+header#top menu#subnav-menu {
+    background: linear-gradient(
+        0deg,
+        var(--subnav-menu-grad-b) 0%,
+        var(--subnav-menu-grad-t) 100%
+    );
+    border-bottom: 1px solid var(--subnav-menu-border-b);
+    border-top: 1px solid var(--subnav-menu-border-t);
+    box-sizing: border-box;
+}
+
+header#top menu.main li.current {
+    background: linear-gradient(#ffffff33 7.9%, transparent 8%),
+        linear-gradient(
+            var(--notice-info-border-color) 0%,
+            var(--subnav-menu-grad-t) 70%
+        );
+    padding: 6px 0px;
+}
+
+header#top menu.main li.current a {
+    background: transparent;
+    border: 1px solid var(--subnav-menu-border-t);
+    border-bottom: 1px solid var(--subnav-menu-grad-t);
+    border-radius: 3px 3px 0px 0px;
+}
+
+a#nav-my-account-link,
+a#nav-posts-link,
+a#nav-comments-link,
+a#nav-notes-link,
+a#nav-artists-link,
+a#nav-tags-link,
+a#nav-pools-link,
+a#nav-wiki-link,
+a#nav-forum-link,
+a#nav-music-link {
+    padding-left: 25px !important;
+    background-size: 17px !important;
+    background-repeat: no-repeat !important;
+    background-position: left !important;
+    background-position-x: 4px !important;
+}
+
+a#nav-my-account-link {
+    background-image: url(./img/icons/person.avif) !important;
+}
+
+a#nav-posts-link {
+    background-image: url(./img/icons/files.avif) !important;
+}
+
+a#nav-comments-link {
+    background-image: url(./img/icons/comment.avif) !important;
+}
+
+a#nav-notes-link {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Oxygen480-actions-view-pim-notes.svg/50px-Oxygen480-actions-view-pim-notes.svg.png) !important;
+}
+
+a#nav-artists-link {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Oxygen480-categories-applications-graphics.svg/50px-Oxygen480-categories-applications-graphics.svg.png) !important;
+}
+
+a#nav-tags-link {
+    background-image: url(./img/icons/tag.avif) !important;
+}
+
+a#nav-pools-link {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Oxygen480-places-folder-bookmark.svg/50px-Oxygen480-places-folder-bookmark.svg.png) !important;
+}
+
+a#nav-wiki-link {
+    background-image: url(./img/icons/helpbook.avif) !important;
+}
+
+a#nav-forum-link {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Konversation_Oxygen.svg/50px-Konversation_Oxygen.svg.png) !important;
+}
+
+a#nav-music-link {
+    background-image: url(./img/icons/musiccd.avif) !important;
+}
+
+body a.user-member {
+    color: var(--link-color);
+}
+
+input,
+select,
+textarea {
+    border-radius: 4px;
+    border: 1px solid var(--notice-info-border-color);
+    background: linear-gradient(
+        0deg,
+        var(--textbox-grad-b),
+        var(--textbox-grad-t)
+    );
+    background-color: var(--textbox-background);
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 1px solid var(--subnav-menu-border-t);
+}
+
+input,
+select,
+textarea {
+    border-radius: 4px;
+    border: 1px solid var(--notice-info-border-color);
+    background: linear-gradient(
+        0deg,
+        var(--textbox-grad-b),
+        var(--textbox-grad-t)
+    );
+    background-color: var(--textbox-background);
+}
+
+form.quick-search-form input {
+    background: linear-gradient(
+        0deg,
+        var(--textbox-grad-b),
+        var(--textbox-grad-t)
+    );
+}
+
+/* Remove all .fit-width overrides if you want the post preview 
+height to be the default one and not fit to screen height */
+
+.fit-width {
+    max-height: 60vh !important;
+    width: auto !important;
+}
+
+@media screen and (max-width: 660px) {
+    .fit-width {
+        height: auto !important;
+    }
+
+    header#top menu.main li.current a {
+        border: 1px solid var(--subnav-menu-border-t);
+        border-radius: 3px;
+    }
+}
+
+.post-preview img {
+    border-radius: 5px;
+    border: 1px solid var(--notice-info-border-color);
+    box-shadow: 0px 0px 25px var(--box-shadow-color);
+}
+
+.image-container img,
+.note-container img,
+.blacklisted img,
+.image-container video,
+.note-container video,
+.blacklisted video {
+    /*height: calc(49%);*/
+    max-width: 100%;
+    transition: transform 0.4s ease; /* For smooth grow effect */
+}
+
+.image-container {
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid var(--notice-info-border-color);
+    box-shadow: 0px 0px 25px var(--box-shadow-color);
+}
+
+video.post-preview-image {
+    user-select: none;
+}
+
+img.post-preview-image:hover,
+video.post-preview-image:hover {
+    transform: scale(1.1); /* Grow slightly on hover */
+}
+
+img#image {
+    background-image: linear-gradient(45deg, #1d1d1d 25%, transparent 25%),
+        linear-gradient(-45deg, #1d1d1d 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #1d1d1d 75%),
+        linear-gradient(-45deg, transparent 75%, #1d1d1d 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+.ui-button {
+    background: linear-gradient(#ffffff45 0%, #ffffff11 50%, #00000000 51%),
+        linear-gradient(
+            var(--subnav-menu-grad-t),
+            var(--chip-primary-background-color)
+        );
+    transition: all 0.15s ease-in;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus,
+.ui-button:hover,
+.ui-button:focus {
+    color: var(--button-hover-color);
+}
+
+div#c-posts div#a-show #artist-commentary {
+    background: linear-gradient(
+        0deg,
+        var(--notice-info-background),
+        var(--textbox-grad-t)
+    );
+}
+
+input#tags {
+    background: none;
+    background-color: transparent;
+    border: none;
+    margin: 3px;
+}
+
+input#tags:focus-visible {
+    border: none;
+    background-color: black;
+    box-shadow: 0px 0px 25px var(--box-shadow-color);
+    outline: none;
+    background-color: transparent;
+    transition: box-shadow 0.1s linear;
+}
+
+button#search-box-submit {
+    border: none;
+}
+
+#search-box-form {
+    border: 1px solid var(--notice-info-border-color);
+    border-radius: 5px;
+}
+
+form.simple_form
+    div.input.radio_buttons.radio-button-group
+    input:checked
+    ~ label,
+form.simple_form
+    div.input.radio_buttons.radio-button-group
+    input:checked
+    ~ label:hover {
+    background-color: var(--subnav-menu-grad-t);
+}
+
+form.simple_form div.input.radio_buttons.radio-button-group .radio label:hover {
+    background-color: var(--post-pending-notice-background);
+    border-color: transparent;
+}
+
+.file-upload-component .dropzone-container {
+    background: linear-gradient(
+        0deg,
+        var(--post-resized-notice-background),
+        var(--post-pending-notice-background)
+    );
+}
+
+.card,
+.card-elevated {
+    background-color: var(--chip-primary-background-color);
+}
+
+#page-footer {
+    display: none;
+}
+
+table.striped tr:nth-child(even) {
+    background: var(--form-button-background);
+}
+
+table.striped tbody tr {
+    border-color: var(--default-border-color);
+}
+
+a.button-primary,
+button.button-primary,
+input[type="submit"].button-primary {
+    background: linear-gradient(#ffffff45 0%, #ffffff11 50%, #00000000 51%),
+        linear-gradient(
+            var(--subnav-menu-grad-t),
+            var(--chip-primary-background-color)
+        );
+    background-color: transparent;
+    transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+        color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border: 1px solid var(--notice-info-border-color);
+}
+
+input[type="button"],
+input[type="submit"],
+button {
+    background: linear-gradient(#ffffff45 0%, #ffffff11 50%, #00000000 51%),
+        linear-gradient(
+            var(--subnav-menu-grad-t),
+            var(--chip-primary-background-color)
+        );
+    border: 1px solid var(--notice-info-border-color);
+}
+
+a.button-primary:hover:not([disabled]),
+button.button-primary:hover:not([disabled]),
+input[type="submit"].button-primary:hover:not([disabled]) {
+    background-color: transparent;
+    background: var(--form-button-hover-background);
+}
+
+div.prose details {
+    border-radius: 0.25rem;
+    background-color: transparent;
+    background: linear-gradient(
+        180deg,
+        var(--textbox-grad-t),
+        var(--textbox-grad-b)
+    );
+    border: 1px solid var(--subnav-menu-grad-t);
+    box-sizing: border-box;
+}
+
+div.prose details summary {
+    background: linear-gradient(
+        180deg,
+        var(--subnav-menu-grad-t),
+        var(--subnav-menu-grad-b)
+    );
+    border-bottom: 1px solid var(--subnav-menu-grad-t);
+    box-sizing: border-box;
+}
+
+.ui-widget-content {
+    /* border: 1px solid var(--subnav-menu-grad-t) !important; */
+    border: 1px solid black !important;
+    background: linear-gradient(
+        180deg,
+        var(--textbox-grad-t),
+        var(--textbox-grad-b)
+    );
+}
+
+.ui-widget-header {
+    background: linear-gradient(
+        180deg,
+        var(--subnav-menu-grad-t),
+        var(--subnav-menu-grad-b)
+    );
+    color: white;
+    border-bottom: 1px solid var(--subnav-menu-grad-t) !important;
+}
+
+.ui-widget-overlay {
+    background: #000000;
+    opacity: 0.65;
+}
+
+div#c-user-feedbacks [data-category="negative"],
+div#c-moderator-dashboards div#col2 [data-category="negative"] {
+    background: linear-gradient(#7b2525, #410808);
+}
+
+div#c-user-feedbacks [data-category="positive"],
+div#c-moderator-dashboards div#col2 [data-category="positive"] {
+    background: linear-gradient(#2c572c, #031603);
+}
+
+.user {
+    text-shadow: 0px 0px 4px black, 0px 0px 4px black, 0px 0px 4px black;
+}
+
+.notice-info {
+    background: linear-gradient(
+        var(--subnav-menu-border-b),
+        rgba(0, 0, 0, 0.7)
+    );
+    backdrop-filter: blur(4px);
+}
+
+.media-embed-image img {
+    border: 1px solid var(--subnav-menu-border-t);
+}
+
+/* Enable colored thumbnail borders on mobile */
+.post-preview .post-preview-image {
+    border: 2px solid transparent !important;
+}
+.post-preview.post-status-has-children .post-preview-image {
+    border-color: var(--preview-has-children-color) !important;
+}
+.post-preview.post-status-has-parent .post-preview-image {
+    border-color: var(--preview-has-parent-color) !important;
+}
+.post-preview.post-status-has-children.post-status-has-parent
+    .post-preview-image {
+    border-color: var(--preview-has-children-color)
+        var(--preview-has-parent-color) var(--preview-has-parent-color)
+        var(--preview-has-children-color) !important;
+}
+.post-preview.post-status-deleted .post-preview-image {
+    border-color: var(--preview-deleted-color) !important;
+}
+.post-preview.post-status-has-children.post-status-deleted .post-preview-image {
+    border-color: var(--preview-has-children-color) var(--preview-deleted-color)
+        var(--preview-deleted-color) var(--preview-has-children-color) !important;
+}
+.post-preview.post-status-has-parent.post-status-deleted .post-preview-image {
+    border-color: var(--preview-has-parent-color) var(--preview-deleted-color)
+        var(--preview-deleted-color) var(--preview-has-parent-color) !important;
+}
+.post-preview.post-status-has-children.post-status-has-parent.post-status-deleted
+    .post-preview-image {
+    border-color: var(--preview-has-children-color) var(--preview-deleted-color)
+        var(--preview-deleted-color) var(--preview-has-parent-color) !important;
+}
+.post-preview.post-status-pending:not(.mod-queue-preview) .post-preview-image,
+.post-preview.post-status-flagged:not(.mod-queue-preview) .post-preview-image {
+    border-color: var(--preview-pending-color) !important;
+}
+.post-preview.post-status-has-children.post-status-pending:not(
+        .mod-queue-preview
+    )
+    .post-preview-image,
+.post-preview.post-status-has-children.post-status-flagged:not(
+        .mod-queue-preview
+    )
+    .post-preview-image {
+    border-color: var(--preview-has-children-color) var(--preview-pending-color)
+        var(--preview-pending-color) var(--preview-has-children-color) !important;
+}
+.post-preview.post-status-has-parent.post-status-pending:not(.mod-queue-preview)
+    .post-preview-image,
+.post-preview.post-status-has-parent.post-status-flagged:not(.mod-queue-preview)
+    .post-preview-image {
+    border-color: var(--preview-has-parent-color) var(--preview-pending-color)
+        var(--preview-pending-color) var(--preview-has-parent-color) !important;
+}
+.post-preview.post-status-has-children.post-status-has-parent.post-status-pending:not(
+        .mod-queue-preview
+    )
+    .post-preview-image,
+.post-preview.post-status-has-children.post-status-has-parent.post-status-flagged:not(
+        .mod-queue-preview
+    )
+    .post-preview-image {
+    border-color: var(--preview-has-children-color) var(--preview-pending-color)
+        var(--preview-pending-color) var(--preview-has-parent-color) !important;
+}
+body[data-current-user-is-approver="true"]
+    .post-preview.post-status-flagged
+    .post-preview-image {
+    border-color: var(--preview-flagged-color) !important;
+}
+body[data-current-user-is-approver="true"]
+    .post-preview.post-status-has-children.post-status-flagged
+    .post-preview-image {
+    border-color: var(--preview-has-children-color) var(--preview-flagged-color)
+        var(--preview-flagged-color) var(--preview-has-children-color) !important;
+}
+body[data-current-user-is-approver="true"]
+    .post-preview.post-status-has-parent.post-status-flagged
+    .post-preview-image {
+    border-color: var(--preview-has-parent-color) var(--preview-flagged-color)
+        var(--preview-flagged-color) var(--preview-has-parent-color) !important;
+}
+body[data-current-user-is-approver="true"]
+    .post-preview.post-status-has-children.post-status-has-parent.post-status-flagged
+    .post-preview-image {
+    border-color: var(--preview-has-children-color) var(--preview-flagged-color)
+        var(--preview-flagged-color) var(--preview-has-parent-color) !important;
+}
+
+[data-is-deprecated='true'] span[class^="tag-type-"] a:nth-child(2), /* Tag versions listing, tag column */
+[data-is-deprecated='true'] a[class^="tag-type-"]:not([href^="/wiki_pages"]), /* Tag listing + Tag versions listing, change column */
+li[data-is-deprecated='true'] a.search-tag {
+    color: var(--low-post-count-color) !important;
+}
+
+body a.user-approver {
+    color: var(--user-approver-color);
+}
+
+body a.user-contributor {
+    color: var(--user-contributor-color);
+}
+
+body a.user-builder {
+    color: var(--user-builder-color);
+}
+
+a.user.user-banned {
+    text-decoration: line-through;
+    text-decoration-color: red;
+}
+
+.user-tooltip-badge-contributor {
+    background-color: var(--user-contributor-color) !important;
+}
+
+.user-tooltip-badge-approver {
+    background-color: var(--user-approver-color) !important;
+}
+
+/* Icon replacements */
+
+.mainwindow-top-logo img,
+#app-logo img {
+    content:url(./img/icons/logo.avif);
+}
+
+img[src$="/img/icons/files.png"] {
+    content:url(./img/icons/files.avif);
+}
+
+img[src$="/img/icons/person.png"] {
+    content:url(./img/icons/person.avif);
+}
+
+img[src$="/img/icons/book.png"] {
+    content:url(./img/icons/helpbook.avif);
+}

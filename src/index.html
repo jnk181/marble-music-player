@@ -1,0 +1,276 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Marble Music Player</title>
+      <link rel="stylesheet" href="./index.css">
+        <script>window.api.pasteCustomRootCSS(); window.api.discsCSS()</script>
+        <script src="./js/music_player.js"></script>
+        <script src="./js/music_player_frontend.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <body data-artwork-hidden="0" data-shuffle-mode="0" data-repeat-mode="no-repeat">
+        <div class="widget-area" style="display:none">
+            <div class="widget widget-import" style="display:none">
+                <h2>Import music</h2>
+                <button type="button" class="button-close" onclick="closeWidgets();">
+                    <img src="./img/music_player/close.png">
+                </button>
+                <div class="progress-bar">
+                    <div class="progress">
+
+                    </div>
+                </div>
+                <button type="button" class="button-stop" onclick="importMusicGUI();">
+                    <span>Import</span>
+                </button>
+            </div>
+        </div>
+        <div class="ymp-menu-bar">
+            <span onclick="openMenuBarOptions('file')">File</span>
+            <span onclick="openMenuBarOptions('options')">Options</span>
+            <span onclick="openMenuBarOptions('help')">Help</span>
+        </div>
+        <div class="ymp-menu-bar-option-menu" style="display:none;">
+            <div class="option template">
+                <img class="icon" src="./img/music_player/exit.avif">
+                <span class="text">Exit</span>
+            </div>
+        </div>
+        <div id="ymp-mobile-tabber">
+            <div class="mobile-tabber selected" data-tab-content="library" onclick="gotoTab(this)"><span>Library</span></div>
+            <div class="mobile-tabber" data-tab-content="nowplaying" onclick="gotoTab(this)"><span>Now playing</span></div>
+            <div class="mobile-tabber" data-tab-content="playlist" onclick="gotoTab(this)"><span>Playlist</span></div>
+        </div>
+        <div class="ymp-nowplaying-mobile-bottom-flyout">
+            <div class="info">
+                <img src="./img/music_player/disc.png" class="cover">
+                <div class="text">
+                    <span class="no-scrollbar title"></span>
+                    <span class="no-scrollbar artist"></span>
+                    <span class="no-scrollbar album"></span>
+                </div>
+            </div>
+            <div class="ymp-nowplaying-controls">
+                    <div class="seekbar">
+                        <div class="colorize"></div>
+                        <div class="progress-coverage"><div class="progress-coverage-inner"></div></div>
+                        <div class="cursor"></div>
+                        <div class="cursor-hover"></div>
+                    </div>
+                    <div class="buttons">
+                        <button type="button" class="button-play" onclick="playButton();">
+                            <img src="./img/music_player/play.png">
+                        </button>
+                        <button type="button" class="button-stop" onclick="stopButton();">
+                            <img src="./img/music_player/stop.png">
+                        </button>
+                        <div></div>
+                        <button type="button" class="button-prev" onclick="prevTrack()">
+                            <img src="./img/music_player/prev.png">
+                        </button>
+                        <button type="button" class="button-next" onclick="nextTrack()">
+                            <img src="./img/music_player/next.png">
+                        </button>
+                        <div class="ymp-nowplaying-details">
+                            <span class="postid"></span>
+                            <span></span>
+                            <span class="time">0:00</span>
+                        </div>
+                        <button type="button" class="button-repeat" onclick="toggleRepeat()">
+                            <img src="./img/music_player/repeat.png">
+                        </button>
+                        <button type="button" class="button-shuffle" onclick="toggleShuffle()">
+                            <img src="./img/music_player/shuffle.png">
+                        </button>
+                    </div>
+                </div>
+        </div>
+        <div id="ymp-cont" class="flex-1 mt-4">
+            <div class='ymp-library-cont mobile-visible'>
+                <div class="ymp-library-searchbox-cont flex">
+                    <input type="text" value="" name="search" id="ymp-library-searchbox" class="flex-auto ui-autocomplete-input" data-shortcut="q" data-autocomplete="tag-query" autocapitalize="none" autocomplete="off" title="Shortcut is q">
+                    <input type="hidden" name="z" id="z" value="5" autocomplete="off">
+                    <button id="ymp-library-searchbox-button" type="submit" onclick="loadAlbumsByKeyword(document.querySelector(`#ymp-library-searchbox`).value)">
+                        <img width="20" src="https://images.freeimages.com/fic/images/icons/117/radium/256/search.png">
+                    </button>
+                </div>
+                <div class="ymp-tabbar-cont">
+                    <div class="ymp-tabbar-item selected" data-tabname="ymp-library-artists" onclick="switchTab(this)">
+                        <span>Artists</span>
+                    </div>
+                    <div class="ymp-tabbar-item" data-tabname="ymp-library-genres" onclick="switchTab(this)">
+                        <span>Genres</span>
+                    </div>
+                    <div class="ymp-tabbar-item" data-tabname="ymp-library-collections" onclick="switchTab(this)">
+                        <span>Collections</span>
+                    </div>
+                    <div class="ymp-tabbar-item" data-tabname="ymp-library-lyrics" onclick="switchTab(this)">
+                        <span>Lyrics</span>
+                    </div>
+                    <div class="ymp-tabbar-item" data-tabname="ymp-library-info">
+                        <span>Info</span>
+                    </div>
+                </div>
+
+                <div class="ymp-tabbed-content">
+                    <div class="ymp-library-artists">
+                        <div class="ymp-library-searchbox-cont flex">
+                            <input oninput="filterLibraryList(this)" type="text" value="" name="search" id="tags" class="flex-auto ui-autocomplete-input" data-shortcut="q" data-autocomplete="tag-query" autocapitalize="none" autocomplete="off" title="Shortcut is q">
+                            <input type="hidden" name="z" id="z" value="5" autocomplete="off">
+                            <button class="ui-button ui-widget ui-corner-all" id="search-box-submit" type="submit">
+                                <img width="20" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Oxygen480-actions-view-filter.svg/50px-Oxygen480-actions-view-filter.svg.png">
+                            </button>
+                        </div>
+                        <div class="ymp-library-artists-list">
+                            <div class="ymp-library-list-item template">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Oxygen480-places-user-identity.svg/50px-Oxygen480-places-user-identity.svg.png">
+                                <span>Lady Gaga</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ymp-library-genres" style="display:none;">
+                        <div class="ymp-library-searchbox-cont flex">
+                            <input oninput="filterLibraryList(this)" type="text" value="" name="search" id="tags" class="flex-auto ui-autocomplete-input" data-shortcut="q" data-autocomplete="tag-query" autocapitalize="none" autocomplete="off" title="Shortcut is q">
+                            <input type="hidden" name="z" id="z" value="5" autocomplete="off">
+                            <button class="ui-button ui-widget ui-corner-all" id="search-box-submit" type="submit">
+                                <img width="20" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Oxygen480-actions-view-filter.svg/50px-Oxygen480-actions-view-filter.svg.png">
+                            </button>
+                        </div>
+                        <div class="ymp-library-genres-list">
+                            <div class="ymp-library-list-item template">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Oxygen480-places-user-identity.svg/50px-Oxygen480-places-user-identity.svg.png">
+                                <span>Lady Gaga</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ymp-library-collections" style="display:none;">
+                        <div class="ymp-library-searchbox-cont flex">
+                            <input oninput="filterLibraryList(this)" type="text" value="" name="search" id="tags" class="flex-auto ui-autocomplete-input" data-shortcut="q" data-autocomplete="tag-query" autocapitalize="none" autocomplete="off" title="Shortcut is q">
+                            <input type="hidden" name="z" id="z" value="5" autocomplete="off">
+                            <button class="ui-button ui-widget ui-corner-all" id="search-box-submit" type="submit">
+                                <img width="20" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Oxygen480-actions-view-filter.svg/50px-Oxygen480-actions-view-filter.svg.png">
+                            </button>
+                        </div>
+                        <div class="ymp-library-collections-list">
+                            <div class="ymp-library-collections-item template">
+                                <img src="https://i.imgur.com/rl8SLVL.png">
+                                <span>Collection name<span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ymp-library-lyrics" style="display:none;">
+                        <span></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class='ymp-nowplaying-cont' data-playing-state="stopped" data-music-video="0" data-music-video-viewmode="contain">
+                <div class="ymp-nowplaying-artwork">
+                    <div class="overlay"></div>
+                    <div class="background"></div>
+                    <img src="./img/music_player/disc.png">
+                    <video src=""></video>
+                </div>
+                <div class="ymp-nowplaying-controls">
+                    <div class="seekbar">
+                        <div class="colorize"></div>
+                        <div class="progress-coverage"><div class="progress-coverage-inner"></div></div>
+                        <div class="cursor"></div>
+                        <div class="cursor-hover"></div>
+                    </div>
+                    <div class="buttons">
+                            <button type="button" class="button-play" onclick="playButton();">
+                                <img src="./img/music_player/play.png">
+                            </button>
+                            <button type="button" class="button-stop" onclick="stopButton();">
+                                <img src="./img/music_player/stop.png">
+                            </button>
+                            <div></div>
+                            <button type="button" class="button-prev" onclick="prevTrack()">
+                                <img src="./img/music_player/prev.png">
+                            </button>
+                            <button type="button" class="button-next" onclick="nextTrack()">
+                                <img src="./img/music_player/next.png">
+                            </button>
+                            <div class="ymp-nowplaying-details">
+                                <span class="postid"></span>
+                                <span></span>
+                                <span class="time">0:00</span>
+                            </div>
+                            <button type="button" class="button-repeat" onclick="toggleRepeat()">
+                                <img src="./img/music_player/repeat.png">
+                            </button>
+                            <button type="button" class="button-shuffle" onclick="toggleShuffle()">
+                                <img src="./img/music_player/shuffle.png">
+                            </button>
+                    </div>
+                </div>
+                <div class="ymp-nowplaying-info">
+                    <span class='artist'></span>
+                    <span class='title'></span>
+                    <span class='album'></span>
+                    <span class='genre'></span>
+                </div>
+            </div>
+            <div class='ymp-playlist-cont'>
+                <div class="ymp-playlist-filter-cont">
+                    <div class="ymp-library-searchbox-cont flex">
+                        <input type="text" value="" name="search" id="tags" class="flex-auto ui-autocomplete-input" data-shortcut="q" data-autocomplete="tag-query" autocapitalize="none" autocomplete="off" title="Shortcut is q">
+                        <input type="hidden" name="z" id="z" value="5" autocomplete="off">
+                        <button id="search-box-submit" type="submit">
+                            <img width="20" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Oxygen480-actions-view-filter.svg/50px-Oxygen480-actions-view-filter.svg.png">
+                        </button>
+                    </div>
+                    <button type="button" class="ui-button ui-widget" id="button-pmenu" onclick="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Oxygen480-actions-view-list-details.svg/50px-Oxygen480-actions-view-list-details.svg.png">
+                    </button>
+                </div>
+                <div class="ymp-playlist-list">
+                    <div class="ymp-playlist-list-album closed template">
+                        <div class="ymp-playlist-list-album-top" onclick="YBR_openAlbum(this)">
+                            <div class="left">
+                                <img style="background-image:url(./img/music_player/disc.png)" class="cover" src="">
+                                <img class="vinyl" src="./img/music_player/vinyl.avif">
+                                <div class="info">
+                                    <span class="album"><b>Ninja Tuna</b></span><br>
+                                    <span class="artist">Mr. Scruff</span>
+                                    <span class="file_format">MP3</span>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="info">
+                                    <span class="rdate"><b>2009</b></span>
+                                    <span class="genre">0000-00-00</span>
+                                    <span class="tracks">27 tracks</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ymp-playlist-list-album-bottom">
+                            <div class="background"></div>
+                            <div class="ymp-playlist-list-album-bottom-discnum-header template">
+                                <img src="./img/music_player/disc-icon.png">
+                                <span>Disc 1</span>
+                            </div>
+                            <div class="ymp-playlist-list-album-bottom-item template">
+                                <div class="track-overlay"></div>
+                                <span class='track'>1.</span>
+                                <div class='symbol-space'>
+                                    <img class="playing opacity0" src='./img/music_player/symbol-playing.png'>
+                                    <img class="musicvideo-sym" src='./img/music_player/symbol-musicvideo.png'>
+                                </div>
+                                <span class='title'>
+                                    <span class="main"></span>
+                                    <span class="other-artists"></span>
+                                </span>
+                                <span class='duration'>3:45</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
